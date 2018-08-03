@@ -10,11 +10,11 @@
     "vue-jsx"
   ],
   "author": "GaoQi <taki.gaoqi@outlook.com>",
-  "homepage": "https://github.com/wolfcame/vue-table-with-tree-gird",
+  "homepage": "https://github.com/wolfcame/vue-table-with-tree-grid",
   "bugs": "https://github.com/wolfcame/vue-table-with-tree-gird/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wolfcame/vue-table-with-tree-gird"
+    "url": "https://github.com/wolfcame/vue-table-with-tree-grid"
   },
   "main": "lib/vue-table-with-tree-grid.js",
   "files": [
