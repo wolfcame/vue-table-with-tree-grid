@@ -209,20 +209,36 @@ export default {
           </Checkbox>;
       }
       // Tree's firstProp
-      if (this.table.treeType && this.table.firstProp === column.prop) {
-        return <span
-          class={ `${this.prefixCls}--level-${row._level}-cell` }
-          style={{
-            marginLeft: `${(row._level - 1) * 24}px`,
-            paddingLeft: row._childrenLen === 0 ? '20px' : '',
-          }}>
-            { row._childrenLen > 0 &&
-              <i
-                class={ `${this.prefixCls}--tree-icon zk-icon zk-icon-${row._isFold ? 'plus' : 'minus'}-square-o`}
-                on-click={ $event => this.handleEvent($event, 'icon', { row, rowIndex, column, columnIndex }, { isFold: row._isFold }) }></i>
-            }
-            { row[column.prop] ? row[column.prop] : '' }
-        </span>;
+      if (this.table.treeType) {
+        if (this.table.firstProp === column.prop) {
+          return <span
+            class={ `${this.prefixCls}--level-${row._level}-cell` }
+            style={{
+              marginLeft: `${(row._level - 1) * 24}px`,
+              paddingLeft: row._childrenLen === 0 ? '20px' : '',
+            }}>
+              { row._childrenLen > 0 &&
+                <i
+                  class={ `${this.prefixCls}--tree-icon zk-icon zk-icon-${row._isFold ? 'plus' : 'minus'}-square-o`}
+                  on-click={ $event => this.handleEvent($event, 'icon', { row, rowIndex, column, columnIndex }, { isFold: row._isFold }) }></i>
+              }
+              { row[column.prop] ? row[column.prop] : '' }
+          </span>;
+        } else if (column.type === 'template') {
+          return <span
+            class={ `${this.prefixCls}--level-${row._level}-cell` }
+            style={{
+              marginLeft: `${(row._level - 1) * 24}px`,
+              paddingLeft: row._childrenLen === 0 ? '20px' : '',
+            }}>
+              { row._childrenLen > 0 &&
+                <i
+                  class={ `${this.prefixCls}--tree-icon zk-icon zk-icon-${row._isFold ? 'plus' : 'minus'}-square-o`}
+                  on-click={ $event => this.handleEvent($event, 'icon', { row, rowIndex, column, columnIndex }, { isFold: row._isFold }) }></i>
+              }
+              { this.table.$scopedSlots[column.template] ? this.table.$scopedSlots[column.template]({ row, rowIndex, column, columnIndex }) : '' }
+          </span>;
+        }
       }
       // TreeType children's index
       if (this.table.showIndex && this.table.treeType && column.prop === '_normalIndex' && row._level > 1) {
